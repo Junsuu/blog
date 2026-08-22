@@ -6,7 +6,8 @@
     "dev": "next dev --webpack",
     "build": "next build --webpack",
     "start": "next start",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@vanilla-extract/css": "^1.21.2",
@@ -17,13 +18,19 @@
     "react-dom": "^19.2.8"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["@swc/core", "esbuild"]
+    "onlyBuiltDependencies": [
+      "@swc/core",
+      "esbuild"
+    ]
   },
   "devDependencies": {
     "@types/node": "^22.9.0",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "@vanilla-extract/next-plugin": "^2.5.2",
-    "typescript": "^5.7.0"
+    "eslint": "^9.39.5",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "typescript": "^5.7.0",
+    "typescript-eslint": "^8.67.0"
   }
 }

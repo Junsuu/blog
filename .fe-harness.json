@@ -1,0 +1,21 @@
+{
+  "verify": {
+    "typecheck": "pnpm typecheck",
+
+    "__test": "테스트 스크립트가 아직 없다. 단위 테스트가 생기면 여기에 채운다. Stop 게이트는 턴마다 돌기 때문에 몇 초 안에 끝나는 것만 넣을 것.",
+    "test": "",
+
+    "__duplication": "jscpd 미설치. 소스 파일 20여 개 규모라 지금은 잡을 게 거의 없다고 보고 비웠다. `pnpm add -D jscpd` 후 `npx jscpd --min-lines 8 --reporters json --silent` 로 켜면 된다.",
+    "duplication": "",
+
+    "__deadcode": "knip 미설치. `pnpm add -D knip` 후 `npx knip --reporter json` 으로 켜면 된다.",
+    "deadcode": "",
+
+    "__a11yRuntime": "Storybook · Playwright · Vitest 등 렌더 수단이 하나도 없어 런타임 axe 를 얹을 자리가 없다. 정적 검사는 eslint-plugin-jsx-a11y 가 대신한다.",
+    "a11yRuntime": ""
+  },
+
+  "exclude": [".next/**", "next-env.d.ts"],
+
+  "guidance": "번들러가 webpack 으로 고정돼 있다(dev/build 에 --webpack). Next 16 기본값인 Turbopack 에서는 @vanilla-extract/turbopack-plugin 이 rolldown 네이티브 바인딩을 해석하지 못해 .css.ts 평가가 실패한다 — 'Turbopack 으로 옮기라'는 제안은 아직 유효하지 않다. ESLint 는 접근성 정적 검사 전용이며 모든 규칙이 warn 이다. 타입 관련 검증은 pnpm typecheck 가 맡는다. 디자인 토큰 예산(색 6 · 타이포 4 · 간격 4)이 정해져 있어 src/styles/ 밖에서 임의의 색·간격 값을 쓰는 것은 회귀로 본다."
+}
