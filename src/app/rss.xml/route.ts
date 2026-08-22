@@ -1,4 +1,4 @@
-import { getPublishedPosts } from '@/posts/posts';
+import { getPublishedPosts } from '@/posts/model/posts';
 import { site } from '@/site';
 
 // 글은 빌드 타임에 다 정해지므로 정적으로 굽는다.

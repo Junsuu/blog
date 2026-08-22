@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import * as styles from './PostList.css';
-import type { PostMeta } from './types';
+import type { PostMeta } from '@/posts/model/types';
 
 export function PostList({ posts }: { posts: PostMeta[] }) {
   if (posts.length === 0) {

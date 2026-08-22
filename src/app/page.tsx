@@ -1,5 +1,5 @@
-import { getPublishedPosts } from '@/posts/posts';
-import { PostList } from '@/posts/PostList';
+import { getPublishedPosts } from '@/posts/model/posts';
+import { PostList } from '@/posts/ui/PostList';
 import { visuallyHidden } from '@/styles/a11y.css';
 
 export default function HomePage() {

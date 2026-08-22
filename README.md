@@ -75,11 +75,9 @@ FOUC 를 막는 건 `src/theme/themeScript.ts` 의 인라인 스크립트다. `<
 
 ### 목차에 rehype 플러그인을 쓰지 않는다
 
-`src/posts/tableOfContents.ts` 가 MDX 원문에서 `##`/`###` 를 직접 뽑는다. 코드펜스 안의
+`src/posts/model/toc.ts` 가 MDX 원문에서 `##`/`###` 를 직접 뽑는다. 코드펜스 안의
 `#` 은 건너뛴다. 목차와 본문 헤딩이 **같은 `slugify`** 를 쓰는 것이 앵커가 맞아떨어지는
 유일한 근거이므로, 한쪽만 고치면 안 된다.
-
-파일 이름이 `toc.ts` 가 아닌 이유는 `Toc.tsx` 와 대소문자만 달라 macOS 에서 충돌하기 때문이다.
 
 ## 구조
 
@@ -88,7 +86,9 @@ content/posts/       글 — 프레임워크와 무관하게 살아남는 부분
 src/
   site.ts            사이트 상수 (metadata·RSS 가 공유)
   styles/            색 계약 · 토큰 · 전역 리셋
-  posts/             글 도메인: 읽기 · 목차 · 목록 · 본문 스타일
+  posts/
+    model/           글 읽기 · frontmatter 검증 · 목차 추출 (fs 접근, UI 없음)
+    ui/              목록 · 목차 · MDX 매핑 · 본문 스타일
   theme/             인라인 스크립트 + 토글 (유일한 클라이언트 컴포넌트)
   app/               / · /posts/[slug] · /about · /rss.xml
 ```

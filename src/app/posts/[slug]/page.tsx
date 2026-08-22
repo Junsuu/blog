@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
-import { mdxComponents } from '@/posts/MdxComponents';
-import { getAllSlugs, getPostBySlug } from '@/posts/posts';
-import { prose } from '@/posts/prose.css';
-import { extractToc } from '@/posts/tableOfContents';
-import { Toc } from '@/posts/Toc';
+import { getAllSlugs, getPostBySlug } from '@/posts/model/posts';
+import { extractToc } from '@/posts/model/toc';
+import { mdxComponents } from '@/posts/ui/MdxComponents';
+import { prose } from '@/posts/ui/prose.css';
+import { Toc } from '@/posts/ui/Toc';
 import * as styles from './page.css';
 
 // Next 15+ 에서 params 는 Promise 다.

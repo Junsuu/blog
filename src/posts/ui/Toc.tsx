@@ -1,5 +1,5 @@
 import * as styles from './Toc.css';
-import type { TocEntry } from './tableOfContents';
+import type { TocEntry } from '@/posts/model/toc';
 
 export function Toc({ entries }: { entries: TocEntry[] }) {
   // 헤딩이 없는 짧은 글에는 빈 상자를 남기지 않는다.

@@ -1,5 +1,5 @@
 import { type ComponentProps, isValidElement, type ReactNode } from 'react';
-import { slugify } from './tableOfContents';
+import { slugify } from '@/posts/model/toc';
 
 /**
  * 앵커 id 를 만들려면 헤딩의 평문이 필요한데, children 은 `## `code` 를 쓰는 법` 처럼
