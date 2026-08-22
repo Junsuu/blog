@@ -1,0 +1,53 @@
+---
+title: vanilla-extract 를 Next.js App Router 에 붙이기
+date: 2026-08-20
+summary: Emotion 을 접고 zero-runtime 으로 옮기면서 실제로 걸린 것들.
+tags: ['next.js', 'css']
+draft: false
+---
+
+App Router 로 넘어오면서 스타일링을 다시 골라야 했다. Emotion 은 공식 문서가 App Router 를
+지원하지 않는다고 못박고 있어서 선택지에서 빠졌고, 남은 후보 중 빌드 타임에 CSS 를 다 뽑아내는
+vanilla-extract 를 골랐다.
+
+## 왜 zero-runtime 인가
+
+서버 컴포넌트가 기본인 환경에서 런타임 CSS-in-JS 는 이상한 위치에 놓인다. 스타일을 만들려고
+클라이언트 번들에 라이브러리를 실어야 하고, 그러면 서버 컴포넌트로 유지하려던 페이지가
+클라이언트로 끌려 내려온다.
+
+vanilla-extract 는 `.css.ts` 파일을 빌드 타임에 평가해서 정적 CSS 를 만든다. 최종 번들에
+남는 건 클래스 이름 문자열뿐이다.
+
+## 계약을 먼저 만든다
+
+토큰을 값이 아니라 계약으로 정의하면 컴포넌트가 실제 색을 모르게 된다.
+
+```ts
+export const color = createThemeContract({
+  bg: null,
+  text: null,
+  border: null,
+});
+```
+
+`null` 자리에 나중에 테마별 값이 들어간다. 컴포넌트는 `color.bg` 만 참조하므로
+테마가 몇 개로 늘어나든 컴포넌트는 그대로다.
+
+### 셀렉터에 바인딩하기
+
+`createTheme` 은 클래스 이름을 만들어 준다. 하지만 `[data-theme="dark"]` 같은 셀렉터에
+직접 걸고 싶다면 `createGlobalTheme` 을 써야 한다. 이름이 비슷해서 처음에 헷갈렸다.
+
+## 번들러가 발목을 잡는 지점
+
+Next 16 부터 Turbopack 이 기본 번들러다. 그런데 vanilla-extract 의 Turbopack 플러그인은
+아직 초기 버전이라, 설정을 켜도 `.css.ts` 평가 단계에서 넘어지는 경우가 있다.
+
+```bash
+# webpack 경로는 수년째 안정적이다
+next build --webpack
+```
+
+당분간은 webpack 으로 고정해 두고, 플러그인이 안정화되면 옮기는 편이 낫다고 봤다.
+빌드 도구는 조용히 실패하지 않는 쪽이 낫다.
