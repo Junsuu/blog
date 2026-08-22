@@ -39,7 +39,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <SiteHeader />
           <main className={styles.main}>{children}</main>
           <footer className={styles.footer}>
-            © {site.author} · <a href="/rss.xml">rss</a>
+            © {site.author} ·{' '}
+            <a href="/rss.xml" className={styles.footerLink}>
+              rss
+            </a>
           </footer>
         </div>
       </body>

@@ -1,6 +1,6 @@
 import { globalStyle } from '@vanilla-extract/css';
 import { color } from './contract.css';
-import { fontFamily, fontSize, lineHeight } from './tokens';
+import { fontFamily, fontSize, lineHeight, space } from './tokens';
 
 // contract.css 를 import 하므로 테마 변수 선언이 이 파일의 규칙보다 앞에 온다.
 
@@ -13,7 +13,7 @@ globalStyle('*, *::before, *::after', {
 globalStyle('html', {
   WebkitTextSizeAdjust: '100%',
   // 목차 앵커로 점프했을 때 제목이 뷰포트 맨 위에 붙어버리지 않게 한다.
-  scrollPaddingTop: '32px',
+  scrollPaddingTop: space.lg,
 });
 
 globalStyle('body', {

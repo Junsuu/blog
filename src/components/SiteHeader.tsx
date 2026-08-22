@@ -10,7 +10,8 @@ export function SiteHeader() {
         {site.title}
       </Link>
 
-      <nav className={styles.nav}>
+      {/* 글 상세에는 nav 가 둘(헤더·목차)이라 이름이 없으면 랜드마크 목록에서 구분되지 않는다. */}
+      <nav className={styles.nav} aria-label="주요">
         <Link href="/about" className={styles.link}>
           about
         </Link>

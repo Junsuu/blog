@@ -27,3 +27,12 @@ export const footer = style({
   fontSize: fontSize.sm,
   color: color.textMuted,
 });
+
+/**
+ * 전역 리셋이 a 의 밑줄을 지우는데, 푸터 링크는 주변 텍스트와 색까지 같아서
+ * 밑줄이 없으면 링크임을 알 방법이 시각적으로 없다 (WCAG 1.4.1).
+ */
+export const footerLink = style({
+  textDecoration: 'underline',
+  textUnderlineOffset: '3px',
+});

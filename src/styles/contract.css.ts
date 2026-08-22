@@ -22,7 +22,9 @@ export const color = createThemeContract({
 createGlobalTheme(':root', color, {
   bg: '#ffffff',
   text: '#18181b',
-  textMuted: '#71717a',
+  // 목차는 이 색을 accentBg 위에 얹는다. #71717a 는 거기서 4.40:1 로 AA 미달이었다.
+  // 이 값은 흰 배경 5.28:1 / accentBg 4.80:1 로 양쪽 모두 여유가 있다.
+  textMuted: '#6b6b74',
   border: '#e4e4e7',
   accent: '#000000',
   accentBg: '#f4f4f5',

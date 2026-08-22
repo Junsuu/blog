@@ -12,7 +12,9 @@ import { THEME_STORAGE_KEY } from './themeScript';
  * 아이콘 전환은 CSS 가 [data-theme] 를 보고 처리하고(ThemeToggle.css.ts),
  * 이 컴포넌트는 클릭 핸들러만 맡는다. 그래서 첫 페인트부터 아이콘이 정확하다.
  *
- * aria-label 은 상태가 아니라 동작을 서술하는 고정 문자열이라 불일치가 없다.
+ * 접근 가능한 이름도 같은 방식이다. aria-label 을 고정 문자열로 두면 스크린리더
+ * 사용자가 현재 테마를 알 수 없어서, 라벨 두 개를 넣고 CSS 로 하나만 남긴다.
+ * aria-label 은 붙이지 않는다 — 붙이면 콘텐츠 기반 이름을 덮어써 버린다.
  */
 export function ThemeToggle() {
   const toggle = () => {
@@ -30,13 +32,15 @@ export function ThemeToggle() {
   };
 
   return (
-    <button type="button" onClick={toggle} className={styles.button} aria-label="테마 전환">
+    <button type="button" onClick={toggle} className={styles.button}>
       <span className={styles.lightIcon} aria-hidden="true">
         ☀
       </span>
       <span className={styles.darkIcon} aria-hidden="true">
         ☾
       </span>
+      <span className={styles.lightLabel}>현재 라이트 테마 · 다크 테마로 전환</span>
+      <span className={styles.darkLabel}>현재 다크 테마 · 라이트 테마로 전환</span>
     </button>
   );
 }
