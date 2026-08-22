@@ -1,3 +1,6 @@
+import { getPublishedPosts } from '@/posts/posts';
+import { PostList } from '@/posts/PostList';
+
 export default function HomePage() {
-  return <p>placeholder</p>;
+  return <PostList posts={getPublishedPosts()} />;
 }
